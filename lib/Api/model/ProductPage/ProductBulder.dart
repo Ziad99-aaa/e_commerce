@@ -15,8 +15,14 @@ class Productbulder extends StatelessWidget {
       child: GridView.builder(
         itemCount: products.length,
         itemBuilder: (context, index) {
-          return ProductCard(
-            product: products[index],
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, ProductDetailsPage.roteName,
+                  arguments: products[index]);
+            },
+            child: ProductCard(
+              product: products[index],
+            ),
           );
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

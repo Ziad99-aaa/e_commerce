@@ -4,7 +4,6 @@ import 'package:e_commerce/Api/EndPoints.dart';
 import 'package:e_commerce/Api/model/Home/categoryOrBrand_response.dart';
 import 'package:e_commerce/Api/model/Login/login_request.dart';
 import 'package:e_commerce/Api/model/Login/login_response.dart';
-import 'package:e_commerce/Api/model/ProductDetilsPage.dart/pd_response.dart';
 import 'package:e_commerce/Api/model/Register/register_response.dart';
 import 'package:e_commerce/Api/model/ProductPage/product_responce.dart';
 import 'package:http/http.dart' as http;
@@ -79,24 +78,5 @@ class Api_maneger {
       throw e;
     }
   }
-  //
-  // static Future<Product> GetProductDetiles(String productID) async {
-  //   try {
-  //     Uri url = Uri.https(baseUrl, "${Endpoints.product}/$productID");
-  //     var response = await http.get(url);
-  //     return Productt.fromJson(jsonDecode(response.body));
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
 
-  static Future<PdResponse> getProduct(String productID) async {
-    try {
-      Uri url = Uri.https(baseUrl, "/api/v1/products/6428ead5dc1175abc65ca0ad");
-      var response = await http.get(url);
-      return PdResponse.fromJson(jsonDecode(response.body));
-    } catch (e) {
-      throw e;
-    }
-  }
 }

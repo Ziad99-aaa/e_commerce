@@ -1,5 +1,3 @@
-import 'package:e_commerce/Api/model/ProductDetilsPage.dart/PDStates.dart';
-import 'package:e_commerce/Api/model/ProductDetilsPage.dart/ProductDetiles_Cubit.dart';
 import 'package:e_commerce/Api/model/ProductPage/Product_States.dart';
 import 'package:e_commerce/Api/model/ProductPage/product_responce.dart';
 import 'package:e_commerce/Shared/Text_Theme.dart';
@@ -20,23 +18,25 @@ class ProductDetailsPage extends StatelessWidget {
 
     final product = arguments;
     return Scaffold(
-      appBar: AppBar(
-          leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Icon(Icons.arrow_back),
-      )),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(
+              height: 40.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back),
+                ),
                 Container(
-                  width: 350.w,
+                  width: 300.w,
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -61,7 +61,9 @@ class ProductDetailsPage extends StatelessWidget {
                 Icon(Icons.shopping_cart, color: Colors.blueAccent),
               ],
             ),
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
             // Product Image
             ClipRRect(
               borderRadius: BorderRadius.circular(30.r),
@@ -85,11 +87,11 @@ class ProductDetailsPage extends StatelessWidget {
                 /// Add the sample image file into the images folder
                 children: [
                   Image.network(
-                    product.imageCover ?? '',
+                    product.images![0] ?? '',
                     fit: BoxFit.cover,
                   ),
                   Image.network(
-                    product.images![0] ?? '',
+                    product.images![1] ?? '',
                     fit: BoxFit.cover,
                   ),
                   Image.network(
@@ -132,9 +134,7 @@ class ProductDetailsPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              
               'Description',
-
               style:
                   TextThemee.bodymidBlack.copyWith(fontWeight: FontWeight.bold),
             ),

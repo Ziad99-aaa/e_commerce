@@ -20,36 +20,27 @@ class ProductCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              InkWell(
-                onTap: (){
-                  Navigator.pushNamed(
-                            context, ProductDetailsPage.roteName,arguments: product);
-                },
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Image.network(
-                            product.imageCover ??
-                                "", // Replace with the actual image URL
-                            fit: BoxFit.cover,
-                            height: 150.h,
-                            width: double.infinity,
-                          ),
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Image.network(
+                          product.imageCover ??
+                              "", // Replace with the actual image URL
+                          fit: BoxFit.cover,
+                          height: 150.h,
+                          width: double.infinity,
                         ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: IconButton(
-                            icon: Icon(Icons.favorite_border),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Icon(Icons.favorite_border),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               SizedBox(height: 8),
               Text(
@@ -95,14 +86,14 @@ class ProductCard extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 8),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  onPressed: () {},
-                  mini: true,
-                  child: Icon(Icons.add),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.bottomRight,
+              //   child: FloatingActionButton(
+              //     onPressed: () {},
+              //     mini: true,
+              //     child: Icon(Icons.add),
+              //   ),
+              // ),
             ],
           ),
         ),
