@@ -14,6 +14,6 @@ class ProductErorrStates extends ProductStates {
 }
 
 class ProductSuccessStates extends ProductStates {
-    ProductResponce response;
+    var response;
   ProductSuccessStates({required this.response});
 }

@@ -1,52 +1,26 @@
-class ProductResponce {
-  int? results;
-  Metadata? metadata;
-  List<Dataa>? data;
-  String? statusMsg;
+class PdResponse {
+  Data? data;
   String? message;
 
-  ProductResponce(
-      {this.results,
-      this.metadata,
-      this.data,
-      this.message,
-      this.statusMsg});
+  PdResponse({this.data, this.message});
 
-  ProductResponce.fromJson(Map<String, dynamic> json) {
-    if (json["results"] is int) {
-      results = json["results"];
+  PdResponse.fromJson(Map<String, dynamic> json) {
+    if (json["data"] is Map) {
+      data = json["data"] == null ? null : Data.fromJson(json["data"]);
     }
-    if (json["message"] is String) {
-      message = json["message"];
-    }
-    if (json["statusMsg"] is String) {
-      statusMsg = json["statusMsg"];
-    }
-    if (json["metadata"] is Map) {
-      metadata =
-          json["metadata"] == null ? null : Metadata.fromJson(json["metadata"]);
-    }
-    if (json["data"] is List) {
-      data = json["data"] == null
-          ? null
-          : (json["data"] as List).map((e) => Dataa.fromJson(e)).toList();
-    }
+    message = json["message"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["results"] = results;
-    if (metadata != null) {
-      _data["metadata"] = metadata?.toJson();
-    }
     if (data != null) {
-      _data["data"] = data?.map((e) => e.toJson()).toList();
+      _data["data"] = data?.toJson();
     }
     return _data;
   }
 }
 
-class Dataa {
+class Data {
   int? sold;
   List<String>? images;
   List<Subcategory>? subcategory;
@@ -63,13 +37,12 @@ class Dataa {
   double? ratingsAverage;
   String? createdAt;
   String? updatedAt;
+  int? v;
+  List<dynamic>? reviews;
 
-  String? message;
 
-  Dataa(
-      {this.message,
-
-      this.sold,
+  Data(
+      {this.sold,
       this.images,
       this.subcategory,
       this.ratingsQuantity,
@@ -84,16 +57,15 @@ class Dataa {
       this.brand,
       this.ratingsAverage,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.v,
+      this.reviews,
+});
 
-  Dataa.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     if (json["sold"] is int) {
       sold = json["sold"];
     }
-    if (json["message"] is String) {
-      message = json["message"];
-    }
-
     if (json["images"] is List) {
       images =
           json["images"] == null ? null : List<String>.from(json["images"]);
@@ -145,6 +117,13 @@ class Dataa {
     if (json["updatedAt"] is String) {
       updatedAt = json["updatedAt"];
     }
+    if (json["__v"] is int) {
+      v = json["__v"];
+    }
+    if (json["reviews"] is List) {
+      reviews = json["reviews"] ?? [];
+    }
+
   }
 
   Map<String, dynamic> toJson() {
@@ -173,6 +152,10 @@ class Dataa {
     _data["ratingsAverage"] = ratingsAverage;
     _data["createdAt"] = createdAt;
     _data["updatedAt"] = updatedAt;
+    _data["__v"] = v;
+    if (reviews != null) {
+      _data["reviews"] = reviews;
+    }
     _data["id"] = id;
     return _data;
   }
@@ -273,39 +256,6 @@ class Subcategory {
     _data["name"] = name;
     _data["slug"] = slug;
     _data["category"] = category;
-    return _data;
-  }
-}
-
-class Metadata {
-  int? currentPage;
-  int? numberOfPages;
-  int? limit;
-  int? nextPage;
-
-  Metadata({this.currentPage, this.numberOfPages, this.limit, this.nextPage});
-
-  Metadata.fromJson(Map<String, dynamic> json) {
-    if (json["currentPage"] is int) {
-      currentPage = json["currentPage"];
-    }
-    if (json["numberOfPages"] is int) {
-      numberOfPages = json["numberOfPages"];
-    }
-    if (json["limit"] is int) {
-      limit = json["limit"];
-    }
-    if (json["nextPage"] is int) {
-      nextPage = json["nextPage"];
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["currentPage"] = currentPage;
-    _data["numberOfPages"] = numberOfPages;
-    _data["limit"] = limit;
-    _data["nextPage"] = nextPage;
     return _data;
   }
 }

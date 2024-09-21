@@ -1,8 +1,12 @@
+import 'package:e_commerce/Api/model/ProductDetilsPage.dart/PDStates.dart';
+import 'package:e_commerce/Api/model/ProductDetilsPage.dart/ProductDetiles_Cubit.dart';
+import 'package:e_commerce/Api/model/ProductPage/Product_States.dart';
 import 'package:e_commerce/Api/model/ProductPage/product_responce.dart';
 import 'package:e_commerce/Shared/Text_Theme.dart';
 import 'package:e_commerce/Shared/app_color.dart';
 import 'package:e_commerce/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
@@ -12,11 +16,52 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: ListView(
-          padding: EdgeInsets.all(16),
+    final arguments = (ModalRoute.of(context)?.settings.arguments as Dataa);
+
+    final product = arguments;
+    return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(Icons.arrow_back),
+      )),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 350.w,
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30.0),
+                    border: Border.all(color: Colors.blueAccent),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: Colors.grey),
+                      SizedBox(width: 8.0),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: "What do you search for?",
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.shopping_cart, color: Colors.blueAccent),
+              ],
+            ),
+            SizedBox(height: 15,),
             // Product Image
             ClipRRect(
               borderRadius: BorderRadius.circular(30.r),
@@ -39,22 +84,21 @@ class ProductDetailsPage extends StatelessWidget {
                 /// The widgets to display in the [ImageSlideshow].
                 /// Add the sample image file into the images folder
                 children: [
-                  Image.asset(
-                    'assets/sale3.png',
+                  Image.network(
+                    product.imageCover ?? '',
                     fit: BoxFit.cover,
                   ),
-                  Image.asset(
-                    'assets/sale2.png',
+                  Image.network(
+                    product.images![0] ?? '',
                     fit: BoxFit.cover,
                   ),
-                  Image.asset(
-                    'assets/sale3.png',
+                  Image.network(
+                    product.images![1] ?? '',
                     fit: BoxFit.cover,
                   ),
                 ],
 
                 /// Called whenever the page in the center of the viewport changes.
-                
 
                 /// Auto scroll interval.
                 /// Do not auto scroll with null or 0.
@@ -67,33 +111,36 @@ class ProductDetailsPage extends StatelessWidget {
             SizedBox(height: 16),
             // Product Name
             Text(
-              'Nike Air Jordon',
+              product.title ?? '',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 8),
             // Rating and Sold Count
             Row(
               children: [
-                Text('3,230 Sold', style: TextStyle(fontSize: 16)),
+                Text('Sold ${product.sold}', style: TextStyle(fontSize: 16)),
                 Spacer(),
                 Row(
                   children: [
                     Icon(Icons.star, color: Colors.yellow, size: 20),
                     SizedBox(width: 4),
-                    Text('4.8 (7,500)', style: TextStyle(fontSize: 16)),
+                    Text(product.ratingsAverage.toString() ?? '',
+                        style: TextStyle(fontSize: 16)),
                   ],
                 ),
               ],
             ),
             SizedBox(height: 16),
             Text(
+              
               'Description',
+
               style:
                   TextThemee.bodymidBlack.copyWith(fontWeight: FontWeight.bold),
             ),
             // Product Description
             ReadMoreText(
-              'Nike is a multinational corporation that designs, bbbbbbbbbbbbbbbbbbbbdevelops, and sells athletic footwear, apparel, and accessories...',
+              product.description ?? '',
               trimMode: TrimMode.Line,
               trimLines: 2,
               colorClickableText: Colors.pink,
@@ -129,7 +176,7 @@ class ProductDetailsPage extends StatelessWidget {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'EGP 3,500',
+                      'EGP ${product.price ?? ''}',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),

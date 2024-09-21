@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Brandsorcategorybulder extends StatelessWidget {
-  List<Data> categories;
+  List<categoryorbrand> categories;
   Brandsorcategorybulder({required this.categories});
   @override
   Widget build(BuildContext context) {

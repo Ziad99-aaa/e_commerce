@@ -36,7 +36,10 @@ class MyApp extends StatelessWidget {
         // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (context, child) {
           return MaterialApp(
-            initialRoute: rout,
+            initialRoute:
+                // ProductDetailsPage.roteName,
+                // HomeScreen.routName,
+                rout,
             routes: {
               SignUpScreen.routName: (context) => SignUpScreen(),
               LoginScreen.routName: (context) => LoginScreen(),

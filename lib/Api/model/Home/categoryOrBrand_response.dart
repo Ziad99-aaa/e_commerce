@@ -1,45 +1,50 @@
-
 class CategoryrOrBrandResponse {
   int? results;
   Metadata? metadata;
-  List<Data>? data;
+  List<categoryorbrand>? data;
   String? statusMsg;
   String? message;
 
-  CategoryrOrBrandResponse({this.results, this.metadata, this.data, this.statusMsg, this.message});
+  CategoryrOrBrandResponse(
+      {this.results, this.metadata, this.data, this.statusMsg, this.message});
 
   CategoryrOrBrandResponse.fromJson(Map<String, dynamic> json) {
-    if(json["results"] is int) {
+    if (json["results"] is int) {
       results = json["results"];
     }
-    if(json["statusMsg"] is String) {
+    if (json["statusMsg"] is String) {
       statusMsg = json["statusMsg"];
     }
-    if(json["message"] is String) {
+    if (json["message"] is String) {
       message = json["message"];
     }
-    if(json["metadata"] is Map) {
-      metadata = json["metadata"] == null ? null : Metadata.fromJson(json["metadata"]);
+    if (json["metadata"] is Map) {
+      metadata =
+          json["metadata"] == null ? null : Metadata.fromJson(json["metadata"]);
     }
-    if(json["data"] is List) {
-      data = json["data"] == null ? null : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+    if (json["data"] is List) {
+      data = json["data"] == null
+          ? null
+          : (json["data"] as List)
+              .map((e) => categoryorbrand.fromJson(e))
+              .toList();
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["results"] = results;
-    if(metadata != null) {
+    if (metadata != null) {
       _data["metadata"] = metadata?.toJson();
     }
-    if(data != null) {
+    if (data != null) {
       _data["data"] = data?.map((e) => e.toJson()).toList();
     }
     return _data;
   }
 }
 
-class Data {
+class categoryorbrand {
   String? id;
   String? name;
   String? slug;
@@ -47,25 +52,31 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data({this.id, this.name, this.slug, this.image, this.createdAt, this.updatedAt});
+  categoryorbrand(
+      {this.id,
+      this.name,
+      this.slug,
+      this.image,
+      this.createdAt,
+      this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    if(json["_id"] is String) {
+  categoryorbrand.fromJson(Map<String, dynamic> json) {
+    if (json["_id"] is String) {
       id = json["_id"];
     }
-    if(json["name"] is String) {
+    if (json["name"] is String) {
       name = json["name"];
     }
-    if(json["slug"] is String) {
+    if (json["slug"] is String) {
       slug = json["slug"];
     }
-    if(json["image"] is String) {
+    if (json["image"] is String) {
       image = json["image"];
     }
-    if(json["createdAt"] is String) {
+    if (json["createdAt"] is String) {
       createdAt = json["createdAt"];
     }
-    if(json["updatedAt"] is String) {
+    if (json["updatedAt"] is String) {
       updatedAt = json["updatedAt"];
     }
   }
@@ -90,13 +101,13 @@ class Metadata {
   Metadata({this.currentPage, this.numberOfPages, this.limit});
 
   Metadata.fromJson(Map<String, dynamic> json) {
-    if(json["currentPage"] is int) {
+    if (json["currentPage"] is int) {
       currentPage = json["currentPage"];
     }
-    if(json["numberOfPages"] is int) {
+    if (json["numberOfPages"] is int) {
       numberOfPages = json["numberOfPages"];
     }
-    if(json["limit"] is int) {
+    if (json["limit"] is int) {
       limit = json["limit"];
     }
   }

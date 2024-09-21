@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Categoryorbranditem extends StatelessWidget {
-  Data list;
+  categoryorbrand list;
   Categoryorbranditem({required this.list});
 
   @override
@@ -21,16 +21,16 @@ class Categoryorbranditem extends StatelessWidget {
               width: 100.r,
               height: 100.r,
               decoration: BoxDecoration(
-                
                 borderRadius: BorderRadius.circular(1000.r),
                 image: DecorationImage(
                     image: imageProvider,
                     fit: BoxFit.cover,
-                    colorFilter:
-                        ColorFilter.mode(Colors.transparent, BlendMode.colorBurn)),
+                    colorFilter: ColorFilter.mode(
+                        Colors.transparent, BlendMode.colorBurn)),
               ),
             ),
-            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+            placeholder: (context, url) =>
+                Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           // Image.network(list.image??""),
@@ -42,8 +42,9 @@ class Categoryorbranditem extends StatelessWidget {
             flex: 3,
             child: Center(
               child: Text(list.name ?? "",
-                  style: TextThemee.bodymidBlack
-                      .copyWith(color: const Color.fromARGB(255, 0, 45, 90), fontSize: 18)),
+                  style: TextThemee.bodymidBlack.copyWith(
+                      color: const Color.fromARGB(255, 0, 45, 90),
+                      fontSize: 18)),
             ))
       ],
     );

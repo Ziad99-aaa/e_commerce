@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeCategoryInichialStates());
-  List<Data> categories = [];
-  List<Data> Brands = [];
+  List<categoryorbrand> categories = [];
+  List<categoryorbrand> Brands = [];
 
   void getAllCategories() async {
     try {

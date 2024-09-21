@@ -1,11 +1,12 @@
 import 'package:e_commerce/Api/model/ProductPage/ProductCard.dart';
 import 'package:e_commerce/Api/model/ProductPage/product_responce.dart';
+import 'package:e_commerce/Pages/taps/ProductDetils.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Productbulder extends StatelessWidget {
-  List<Data> products;
+  List<Dataa> products;
   Productbulder({required this.products});
   @override
   Widget build(BuildContext context) {
